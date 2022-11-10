@@ -1,0 +1,44 @@
+<?php
+
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+$mysqli = new mysqli("localhost","adminer","pk-6-pght","CTIBSerial");
+
+if ($mysqli -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
+
+require_once("vendor/autoload.php");
+use Shuchkin\SimpleXLSX;
+
+if(isset($_POST['submit'])) {
+    if (is_uploaded_file($_FILES['uploadfile']['tmp_name'])) {
+        if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], '/var/www/uploads/'.$_FILES['uploadfile']['name'])) {
+            echo "Fichier uploadé.<br />";
+            
+            $excelFile = '/var/www/uploads/'.$_FILES['uploadfile']['name'];
+            if ( $xlsx = SimpleXLSX::parse($excelFile) ) {
+//                echo count($xlsx->rows());
+                for($i = 1; $i < count($xlsx->rows()); $i++ ) {
+                    $code = strval($xlsx->rows()[$i][0]);
+                    $etat = $xlsx->rows()[$i][1];
+                    $mysqli -> query("INSERT INTO Serial (code) VALUES ('{$code}')");
+                }
+            }
+        } else {
+            echo "Erreur de deplacement du fichier!<br />";
+        }    
+    } else {
+        echo "Erreur d'upload du fichier!<br />";
+    }
+} else {
+    echo "Erreur de submit du fichier!<br />!";
+}
+
+$host  = $_SERVER['HTTP_HOST'];
+header("Location: http://".$host."/index.php");
+
+?>
