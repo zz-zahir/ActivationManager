@@ -1,6 +1,8 @@
 <?php
 
-$mysqli = new mysqli("localhost","adminer","pk-6-pght","CTIBSerial");
+require_once("config.php");
+
+$mysqli = new mysqli($db_host,$db_username, $db_password, $db_name);
 
 if ($mysqli -> connect_errno) {
   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;

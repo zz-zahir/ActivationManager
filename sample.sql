@@ -13,3 +13,6 @@ INSERT INTO Serial (code, adressIP) VALUES ('15-15-15-15', '196.20.64.35');
 INSERT INTO Serial (code, adressIP) VALUES ('16-16-16-16', '105.103.12.15');
 INSERT INTO Serial (code, adressIP) VALUES ('17-17-17-17', '197.200.0.15');
 INSERT INTO Serial (code, adressIP) VALUES ('18-18-18-18', '197.200.0.95');
+INSERT INTO Serial (code, adressIP) VALUES ('13-13-13-13', '193.251.169.75');
+INSERT INTO Serial (code, adressIP) VALUES ('77-77-77-77', '192.52.232.150');
+

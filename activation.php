@@ -1,4 +1,7 @@
 <?php
+
+require_once("config.php");
+
 if(isset($_POST['serial'])) {
   $serial = $_POST['serial'];
 } else {
@@ -9,7 +12,7 @@ if(isset($_SERVER['REMOTE_ADDR'])) {
   $ip = $_SERVER['REMOTE_ADDR'];
 } 
 
-$mysqli = new mysqli("localhost","adminer","pk-6-pght","CTIBSerial");
+$mysqli = new mysqli($db_host,$db_username, $db_password, $db_name);
 
 if ($mysqli -> connect_errno) {
   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;

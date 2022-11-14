@@ -1,6 +1,7 @@
 <?php
-error_reporting(-1);
-ini_set('display_errors', 'On');
+
+require_once("config.php");
+
 require_once("vendor/autoload.php");
 
 use KHerGe\JSON\JSON;
@@ -8,7 +9,7 @@ use KHerGe\JSON\JSON;
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 
-$mysqli = new mysqli("localhost","adminer","pk-6-pght","CTIBSerial");
+$mysqli = new mysqli($db_host,$db_username, $db_password, $db_name);
 
 if ($mysqli -> connect_errno) {
   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
@@ -22,7 +23,7 @@ for($i = 0; $i < count($rows); $i++) {
     if($rows[$i][0] == '127.0.0.1') {
       continue;
     }
-    $url = "https://api.ipgeolocation.io/ipgeo?apiKey=7dc9e04a3aae44ed95a78e8c83f34051&ip=". $rows[$i][0] ."&fields=city&lang=fr";  
+    $url = "https://api.ipgeolocation.io/ipgeo?apiKey=" . $api_key . "&ip=". $rows[$i][0] ."&fields=city&lang=fr";  
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

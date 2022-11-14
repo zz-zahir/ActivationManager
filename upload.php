@@ -1,10 +1,8 @@
 <?php
 
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+require_once("config.php");
 
-$mysqli = new mysqli("localhost","adminer","pk-6-pght","CTIBSerial");
+$mysqli = new mysqli($db_host,$db_username, $db_password, $db_name);
 
 if ($mysqli -> connect_errno) {
   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
