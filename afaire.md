@@ -1,3 +1,4 @@
+```
 pre-requit:
 https://github.com/shuchkin/simplexlsx
 composer require shuchkin/simplexlsx
@@ -8,3 +9,4 @@ chown user /var/www/uploads/
 chmod -R 0755 /var/www/uploads/
 chown user /var/www/dat/
 chmod -R 0755 /var/www/dat/
+```
